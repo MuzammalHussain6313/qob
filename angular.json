@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "qob"
+    }
+  },
+  "defaultProject": "qob",
+  "cli": {
+    "analytics": false
+  }
 }
