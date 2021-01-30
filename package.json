@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "~10.1.4",
     "@angular/router": "~10.1.4",
     "express": "^4.17.1",
+    "firebase": "^7.22.0",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "ts-xlsx-export": "^1.0.1",

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {tsXLXS} from 'ts-xlsx-export';
+import {DataCollectorService} from './data-collector.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,7 @@ import {tsXLXS} from 'ts-xlsx-export';
 })
 export class AppComponent {
   title = 'qob';
+
+  constructor(private dataCollecter: DataCollectorService) {
+  }
 }
