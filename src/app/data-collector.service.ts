@@ -54,7 +54,7 @@ export class DataCollectorService {
         const course = node.val();
         this.courses.push(course);
       });
-      console.log(this.courses);
+      console.log('courses', this.courses);
     });
   }
 
@@ -202,12 +202,13 @@ export class DataCollectorService {
   createResultObject(array): any {
     this.obj = {};
     const student = this.filterStudent(array[0].studentId);
-    this.obj.name = student.fullName;
-    this.obj.email = student.email;
+    if (student) {
+      this.obj.name = student.fullName;
+      this.obj.email = student.email;
+    }
     this.total = 0;
     this.i = 0;
     while (this.i < array.length) {
-      debugger
       if (this.i + 1 === array[this.i].quizNo) {
         this.total = this.total + array[this.i].achievedMarks;
         this.obj[`quiz${array[this.i].quizNo}`] = array[this.i].achievedMarks;

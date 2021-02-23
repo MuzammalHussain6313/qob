@@ -10,8 +10,11 @@ import {DataCollectorService} from '../data-collector.service';
 export class HomeComponent implements OnInit {
 
   data;
-
-  constructor(private dataCollector: DataCollectorService) {
+  courses: any;
+  constructor(public dataCollector: DataCollectorService) {
+    setTimeout(() => {
+      this.loadCourses();
+    }, 5000);
   }
 
   downloadData(): any {
@@ -65,4 +68,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loadCourses(): any {
+    this.courses = this.dataCollector.courses;
+  }
 }
