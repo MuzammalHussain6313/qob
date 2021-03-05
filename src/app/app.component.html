@@ -1,4 +1,31 @@
-<router-outlet>
-  <button mat-button color="primary">Primary</button>
-  <app-home></app-home>
-</router-outlet>
+<!--&lt;!&ndash;<app-header></app-header>&ndash;&gt;-->
+<!--<router-outlet>-->
+<!--  <app-home></app-home>-->
+<!--</router-outlet>-->
+<!--<ng-sidebar-container>-->
+<!--  <ng-sidebar [opened]="opened">-->
+<!--    <p>Page content</p>-->
+<!--  </ng-sidebar>-->
+<!--  <div style="height: 100%" ng-sidebar-content>-->
+<!--    <button>click me</button>-->
+<!--  </div>-->
+<!--</ng-sidebar-container>-->
+<!--&lt;!&ndash;<app-footer></app-footer>&ndash;&gt;-->
+
+<app-header></app-header>
+<mat-sidenav-container>
+  <mat-sidenav style="width: 75px;" *ngIf="!utils.opened" mode="side" [opened] = "!utils.opened">
+    <button>::</button><br/>
+    <button>::</button>
+  </mat-sidenav>
+  <mat-sidenav *ngIf="utils.opened" mode="side" [opened] = "utils.opened">
+    <button>::</button><button (click)="goHome()">Home</button><br/>
+    <button>::</button><button (click)="goStudentList()" >Student</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <button (click)="opened = !opened">open</button>
+    <button (click)="opened = !opened">close</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-footer></app-footer>

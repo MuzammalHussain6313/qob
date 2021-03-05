@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {DataCollectorService} from './data-collector.service';
+import {UtilsService} from './services/utils.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,27 @@ import {DataCollectorService} from './data-collector.service';
 })
 export class AppComponent {
   title = 'qob';
+  opened = true;
 
-  constructor(private dataCollecter: DataCollectorService) {
+  constructor(
+    public router: Router,
+    public utils: UtilsService,
+    // private dataCollecter: DataCollectorService
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+  }
+
+  toggleMenu(): any {
+    this.utils.toggleOpened();
+  }
+
+  goHome(): any {
+    this.router.navigate(['']);
+  }
+
+  goStudentList(): any {
+    this.router.navigate(['/students']);
   }
 }
