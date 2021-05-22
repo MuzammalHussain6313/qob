@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {tsXLXS} from 'ts-xlsx-export';
-import {DataCollectorService} from '../data-collector.service';
+import {DataCollectorService} from '../services/data-collector.service';
+import {NavController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,36 +13,47 @@ export class HomeComponent implements OnInit {
 
   opened = false;
   data;
-  courses: any;
-  constructor(
-    // public dataCollector: DataCollectorService
-    ) {
+  users: any = [];
+  constructor(public dataCollector: DataCollectorService,
+              public router: Router) {
+    this.dataCollector.getAllUsers();
+    this.loadUsers();
     setTimeout(() => {
-      this.loadCourses();
+      // this.loadUsers();
     }, 5000);
-  }
-
-  downloadData(): any {
-    // const report = this.dataCollector.createReport();
-    // const q1 = 3; const q2 = 2;
-    // const quiz = `quiz${q1}`;
-    // const object = {Name: '', email: '', quiz2: '', total: ''};
-    // object[quiz] = 'dfghj';
-    // console.log(object);
-
-    // setTimeout(() => {
-    //   tsXLXS().exportAsExcelFile(this.dataCollector.report).saveAsExcelFile(`${Date.now()}`);
-    //   if (report) {
-    //   } else {
-    //     console.log('dfghjkl');
-    //   }
-    // }, 2000);
   }
 
   ngOnInit(): void {
   }
 
-  loadCourses(): any {
-    // this.courses = this.dataCollector.courses;
+  loadUsers(): any {
+    this.dataCollector.getValue().subscribe((data: any) => {
+      this.users = this.dataCollector.users;
+    });
+  }
+
+  openUsers(): any {
+    this.router.navigate(['/users']);
+  }
+
+
+  openBooks(): any {
+    this.router.navigate(['/books']);
+  }
+
+  openHelpDesk(): any {
+    this.router.navigate(['/help-desk']);
+  }
+
+  openReviews(): any {
+    this.router.navigate(['/reviews']);
+  }
+
+  openReports(): any {
+    this.router.navigate(['/reports']);
+  }
+
+  openProfile(): any {
+    this.router.navigate(['/profile']);
   }
 }
